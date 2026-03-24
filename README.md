@@ -28,7 +28,7 @@ A modern, responsive Flutter application for tracking Islamic recitations (Dhikr
 
 ## � Screenshots
 
-| Dark Theme - Main Screen | Dark Theme - Goal Picker | Light Theme - Main Screen | Light Theme - Goal Picker |
+|  Main Screen |  Goal Picker |  Main Screen |  Goal Picker |
 |:---:|:---:|:---:|:---:|
 | ![Dark Main](images/Screenshot_1774365791.png) | ![Dark Goal Picker](images/Screenshot_1774365796.png) | ![Light Main](images/Screenshot_1774365847.png) | ![Light Goal Picker](images/Screenshot_1774365868.png) |
 
