@@ -17,44 +17,26 @@ class SharedPreferencesService {
 
   DhikrModel loadDhikrState() {
     final DateTime now = DateTime.now();
-    final String today =
-        '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+    final String today = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
 
     return DhikrModel(
-      count:
-          prefs.getInt(AppConstants.prefsCountKey) ?? AppConstants.defaultCount,
-      dailyGlobalCount:
-          prefs.getInt(AppConstants.prefsDailyGlobalCountKey) ??
-          AppConstants.defaultDailyGlobalCount,
-      lifetimeCount:
-          prefs.getInt(AppConstants.prefsLifetimeCountKey) ??
-          AppConstants.defaultLifetimeCount,
-      goal: prefs.getInt(AppConstants.prefsGoalKey) ?? AppConstants.defaultGoal,
-      currentDhikrIndex:
-          prefs.getInt(AppConstants.prefsCurrentDhikrIndexKey) ??
-          AppConstants.defaultDhikrIndex,
-      lastActiveDate:
-          prefs.getString(AppConstants.prefsLastActiveDateKey) ?? today,
+      count: prefs.getInt(AppConstants.count) ?? AppConstants.defaultCount,
+      dailyGlobalCount: prefs.getInt(AppConstants.dailyGlobalCount) ?? AppConstants.defaultDailyGlobalCount,
+      lifetimeCount: prefs.getInt(AppConstants.lifetimeCount) ?? AppConstants.defaultLifetimeCount,
+      goal: prefs.getInt(AppConstants.goal) ?? AppConstants.defaultGoal,
+      currentDhikrIndex: prefs.getInt(AppConstants.currentDhikrIndex) ?? AppConstants.defaultDhikrIndex,
+      lastActiveDate: prefs.getString(AppConstants.lastActiveDate) ?? today,
     );
   }
 
   Future<void> saveDhikrState(DhikrModel model) async {
     await Future.wait(<Future<bool>>[
-      prefs.setInt(AppConstants.prefsCountKey, model.count),
-      prefs.setInt(
-        AppConstants.prefsDailyGlobalCountKey,
-        model.dailyGlobalCount,
-      ),
-      prefs.setInt(AppConstants.prefsLifetimeCountKey, model.lifetimeCount),
-      prefs.setInt(AppConstants.prefsGoalKey, model.goal),
-      prefs.setInt(
-        AppConstants.prefsCurrentDhikrIndexKey,
-        model.currentDhikrIndex,
-      ),
-      prefs.setString(
-        AppConstants.prefsLastActiveDateKey,
-        model.lastActiveDate,
-      ),
+      prefs.setInt(AppConstants.count, model.count),
+      prefs.setInt(AppConstants.dailyGlobalCount, model.dailyGlobalCount,),
+      prefs.setInt(AppConstants.lifetimeCount, model.lifetimeCount),
+      prefs.setInt(AppConstants.goal, model.goal),
+      prefs.setInt(AppConstants.currentDhikrIndex, model.currentDhikrIndex,),
+      prefs.setString(AppConstants.lastActiveDate, model.lastActiveDate,),
     ]);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-Future<void> showGoalPickerBottomSheet({
+Future<void> goalPickerBottomSheet({
   required BuildContext context,
   required List<int> presets,
   required ValueChanged<int> onGoalSelected,
@@ -52,7 +52,7 @@ Future<void> showGoalPickerBottomSheet({
                     return;
                   }
 
-                  await _showCustomGoalDialog(
+                  await customGoalDialog(
                     context: parentContext,
                     onGoalSelected: onGoalSelected,
                   );
@@ -67,7 +67,7 @@ Future<void> showGoalPickerBottomSheet({
   );
 }
 
-Future<void> _showCustomGoalDialog({
+Future<void> customGoalDialog({
   required BuildContext context,
   required ValueChanged<int> onGoalSelected,
 }) async {

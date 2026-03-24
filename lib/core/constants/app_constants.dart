@@ -9,10 +9,10 @@ class AppConstants {
   static const int defaultLifetimeCount = 0;
   static const int defaultDhikrIndex = 0;
 
-  static const String prefsCountKey = 'dhikr_count';
-  static const String prefsGoalKey = 'dhikr_goal';
-  static const String prefsDailyGlobalCountKey = 'dhikr_daily_global_count';
-  static const String prefsCurrentDhikrIndexKey = 'dhikr_current_dhikr_index';
-  static const String prefsLifetimeCountKey = 'dhikr_lifetime_count';
-  static const String prefsLastActiveDateKey = 'dhikr_last_active_date';
+  static const String count = 'dhikr_count';
+  static const String goal = 'dhikr_goal';
+  static const String dailyGlobalCount = 'dhikr_daily_global_count';
+  static const String currentDhikrIndex = 'dhikr_current_dhikr_index';
+  static const String lifetimeCount = 'dhikr_lifetime_count';
+  static const String lastActiveDate = 'dhikr_last_active_date';
 }

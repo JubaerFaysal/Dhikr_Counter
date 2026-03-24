@@ -11,7 +11,7 @@ final NotifierProvider<DhikrViewModel, DhikrModel> dhikrViewModelProvider =
     NotifierProvider<DhikrViewModel, DhikrModel>(DhikrViewModel.new);
 
 class DhikrViewModel extends Notifier<DhikrModel> {
-  static const List<DhikrPhraseModel> _phrases = <DhikrPhraseModel>[
+  static const List<DhikrPhraseModel> phrase = <DhikrPhraseModel>[
     DhikrPhraseModel(
       arabic: 'سُبْحَانَ ٱللَّٰهِ',
       english: 'SUBHANALLAH',
@@ -29,7 +29,7 @@ class DhikrViewModel extends Notifier<DhikrModel> {
     ),
   ];
 
-  List<DhikrPhraseModel> get phrases => _phrases;
+  List<DhikrPhraseModel> get phrases => phrase;
   static const List<int> goalPresets = <int>[33, 99, 100];
 
   Timer? _saveDebounce;
@@ -64,7 +64,7 @@ class DhikrViewModel extends Notifier<DhikrModel> {
 
   void switchDhikr() {
     state = state.copyWith(
-      currentDhikrIndex: (state.currentDhikrIndex + 1) % _phrases.length,
+      currentDhikrIndex: (state.currentDhikrIndex + 1) % phrase.length,
       count: 0,
       lastActiveDate: _todayString(),
     );

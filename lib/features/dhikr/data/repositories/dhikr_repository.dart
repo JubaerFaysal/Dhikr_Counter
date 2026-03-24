@@ -8,18 +8,18 @@ abstract class DhikrRepository {
 }
 
 class SharedPrefsDhikrRepository implements DhikrRepository {
-  SharedPrefsDhikrRepository(this._service);
+  SharedPrefsDhikrRepository(this.service);
 
-  final SharedPreferencesService _service;
+  final SharedPreferencesService service;
 
   @override
   DhikrModel loadState() {
-    return _service.loadDhikrState();
+    return service.loadDhikrState();
   }
 
   @override
   Future<void> saveState(DhikrModel model) async {
-    await _service.saveDhikrState(model);
+    await service.saveDhikrState(model);
   }
 }
 

@@ -1,4 +1,3 @@
-import 'package:dhikr_counter/core/providers/theme_provider.dart';
 import 'package:dhikr_counter/features/dhikr/data/models/dhikr_model.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/providers/dhikr_provider.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/widgets/circle_button.dart';
@@ -63,11 +62,9 @@ class DhikrScreen extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        const Spacer(),
-                        const _MoodButton(),
                       ],
                     ),
-                    const SizedBox(height: 28),
+                    const SizedBox(height: 32),
                     CounterDisplay(
                       dailyGlobalCount: state.dailyGlobalCount,
                       compact: compact,
@@ -139,7 +136,7 @@ class DhikrScreen extends ConsumerWidget {
                               ),
                             ),
                             IconButton(
-                              onPressed: () => showGoalPickerBottomSheet(
+                              onPressed: () => goalPickerBottomSheet(
                                 context: context,
                                 presets: DhikrViewModel.goalPresets,
                                 onGoalSelected: viewModel.updateGoal,
@@ -193,36 +190,6 @@ class DhikrScreen extends ConsumerWidget {
               ),
             );
           },
-        ),
-      ),
-    );
-  }
-}
-
-class _MoodButton extends ConsumerWidget {
-  const _MoodButton();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bool isDark = ref.watch(themeProvider);
-    final Color bgColor = isDark ? Colors.white : const Color(0xFF1A1A1A);
-    final Color iconColor = isDark ? const Color(0xFF1A1A1A) : Colors.white;
-
-    return Material(
-      color: bgColor,
-      shape: const CircleBorder(),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        onTap: () {
-          ref.read(themeProvider.notifier).toggleTheme();
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Icon(
-            isDark ? Icons.nights_stay_rounded : Icons.light_mode_rounded,
-            color: iconColor,
-            size: 22,
-          ),
         ),
       ),
     );

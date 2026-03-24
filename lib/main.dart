@@ -1,5 +1,4 @@
 import 'package:dhikr_counter/core/constants/app_constants.dart';
-import 'package:dhikr_counter/core/providers/theme_provider.dart';
 import 'package:dhikr_counter/core/services/shared_preferences_service.dart';
 import 'package:dhikr_counter/core/theme/app_theme.dart';
 import 'package:dhikr_counter/features/dhikr/data/repositories/dhikr_repository.dart';
@@ -12,14 +11,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences preferences = await SharedPreferences.getInstance();
-  final SharedPreferencesService service = SharedPreferencesService(
-    preferences,
-  );
+  final SharedPreferencesService service = SharedPreferencesService(preferences);
 
   runApp(
     ProviderScope(
       overrides: <Override>[
-        sharedPreferencesServiceProvider.overrideWithValue(service),
         dhikrRepositoryProvider.overrideWithValue(
           SharedPrefsDhikrRepository(service),
         ),
@@ -34,12 +30,10 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool isDark = ref.watch(themeProvider);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppConstants.appTitle,
-      theme: isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+      theme: AppTheme.darkTheme,
       home: const DhikrScreen(),
     );
   }
