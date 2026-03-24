@@ -1,5 +1,5 @@
-import 'package:dhikr_counter/main.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/providers/dhikr_provider.dart';
+import 'package:dhikr_counter/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,12 +17,12 @@ void main() {
     );
 
     expect(find.text('Dhikr'), findsOneWidget);
-    final int initialCount = container.read(dhikrViewModelProvider).count;
+    expect(container.read(dhikrViewModelProvider).count, 24);
 
     await tester.tap(find.text('SUBHANALLAH'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 250));
 
-    expect(container.read(dhikrViewModelProvider).count, initialCount + 1);
+    expect(container.read(dhikrViewModelProvider).count, 25);
   });
 }

@@ -1,3 +1,4 @@
+import 'package:dhikr_counter/core/providers/theme_provider.dart';
 import 'package:dhikr_counter/features/dhikr/data/models/dhikr_model.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/providers/dhikr_provider.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/widgets/circle_button.dart';
@@ -23,7 +24,7 @@ class DhikrScreen extends ConsumerWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             final double width = constraints.maxWidth;
             final bool compact = width < 380;
-            final double orbSize = compact ? width * 0.66 : width * 0.66;
+            final double orbSize = width * 0.66;
 
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -37,7 +38,7 @@ class DhikrScreen extends ConsumerWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        CircleButton(compact: compact,),
+                        CircleButton(compact: compact),
                         const SizedBox(width: 14),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,9 +63,11 @@ class DhikrScreen extends ConsumerWidget {
                             ),
                           ],
                         ),
+                        const Spacer(),
+                        const _MoodButton(),
                       ],
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 28),
                     CounterDisplay(
                       dailyGlobalCount: state.dailyGlobalCount,
                       compact: compact,
@@ -168,7 +171,7 @@ class DhikrScreen extends ConsumerWidget {
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
 
@@ -184,7 +187,6 @@ class DhikrScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                   // const SizedBox(height: 8),
                     ResetButton(onPressed: viewModel.resetSession),
                   ],
                 ),
@@ -197,3 +199,32 @@ class DhikrScreen extends ConsumerWidget {
   }
 }
 
+class _MoodButton extends ConsumerWidget {
+  const _MoodButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool isDark = ref.watch(themeProvider);
+    final Color bgColor = isDark ? Colors.white : const Color(0xFF1A1A1A);
+    final Color iconColor = isDark ? const Color(0xFF1A1A1A) : Colors.white;
+
+    return Material(
+      color: bgColor,
+      shape: const CircleBorder(),
+      child: InkWell(
+        customBorder: const CircleBorder(),
+        onTap: () {
+          ref.read(themeProvider.notifier).toggleTheme();
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Icon(
+            isDark ? Icons.nights_stay_rounded : Icons.light_mode_rounded,
+            color: iconColor,
+            size: 22,
+          ),
+        ),
+      ),
+    );
+  }
+}

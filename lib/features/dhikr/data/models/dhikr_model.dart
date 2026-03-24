@@ -1,12 +1,12 @@
 class DhikrPhraseModel {
   const DhikrPhraseModel({
     required this.arabic,
-    required this.transliteration,
+    required this.english,
     required this.meaning,
   });
 
   final String arabic;
-  final String transliteration;
+  final String english;
   final String meaning;
 }
 

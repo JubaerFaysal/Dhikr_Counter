@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:dhikr_counter/core/constants/app_constants.dart';
 import 'package:dhikr_counter/features/dhikr/data/models/dhikr_model.dart';
-import 'package:dhikr_counter/features/dhikr/domain/repositories/dhikr_repository.dart';
+import 'package:dhikr_counter/features/dhikr/data/repositories/dhikr_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final Provider<DhikrRepository> dhikrRepositoryProvider =
@@ -15,17 +14,17 @@ class DhikrViewModel extends Notifier<DhikrModel> {
   static const List<DhikrPhraseModel> _phrases = <DhikrPhraseModel>[
     DhikrPhraseModel(
       arabic: 'سُبْحَانَ ٱللَّٰهِ',
-      transliteration: 'SUBHANALLAH',
+      english: 'SUBHANALLAH',
       meaning: 'GLORY BE TO ALLAH',
     ),
     DhikrPhraseModel(
       arabic: 'ٱلْحَمْدُ لِلَّٰهِ',
-      transliteration: 'ALHAMDULILLAH',
+      english: 'ALHAMDULILLAH',
       meaning: 'ALL PRAISE IS FOR ALLAH',
     ),
     DhikrPhraseModel(
       arabic: 'ٱللَّٰهُ أَكْبَرُ',
-      transliteration: 'ALLAHU AKBAR',
+      english: 'ALLAHU AKBAR',
       meaning: 'ALLAH IS THE GREATEST',
     ),
   ];
@@ -116,31 +115,5 @@ class DhikrViewModel extends Notifier<DhikrModel> {
   String _todayString() {
     final DateTime now = DateTime.now();
     return '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
-  }
-}
-
-class InMemoryDhikrRepository implements DhikrRepository {
-  late DhikrModel _state = DhikrModel(
-    count: AppConstants.defaultCount,
-    dailyGlobalCount: AppConstants.defaultDailyGlobalCount,
-    lifetimeCount: AppConstants.defaultDailyGlobalCount,
-    goal: AppConstants.defaultGoal,
-    currentDhikrIndex: AppConstants.defaultDhikrIndex,
-    lastActiveDate: _todayString(),
-  );
-
-  String _todayString() {
-    final DateTime now = DateTime.now();
-    return '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
-  }
-
-  @override
-  DhikrModel loadState() {
-    return _state;
-  }
-
-  @override
-  Future<void> saveState(DhikrModel model) async {
-    _state = model;
   }
 }

@@ -6,6 +6,7 @@ class AppConstants {
   static const int defaultCount = 0;
   static const int defaultGoal = 33;
   static const int defaultDailyGlobalCount = 1000;
+  static const int defaultLifetimeCount = 0;
   static const int defaultDhikrIndex = 0;
 
   static const String prefsCountKey = 'dhikr_count';

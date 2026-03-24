@@ -61,7 +61,7 @@ class IncrementButton extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    phrase.transliteration,
+                    phrase.english,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
