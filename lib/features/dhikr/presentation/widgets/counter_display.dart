@@ -18,7 +18,7 @@ class CounterDisplay extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(999),
               border: Border.all(color: const Color(0xFF3A3220)),
@@ -33,9 +33,9 @@ class CounterDisplay extends StatelessWidget {
                   'GLOBAL LIVE COUNT',
                   style: TextStyle(
                     color: Color(0xFFB79B43),
-                    letterSpacing: 2,
+                    letterSpacing: 1,
                     fontWeight: FontWeight.w700,
-                    fontSize: 14,
+                    fontSize: 12,
                   ),
                 ),
               ],
@@ -48,7 +48,7 @@ class CounterDisplay extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
-            fontSize: compact ? 30 : 38,
+            fontSize: compact ? 26 : 30,
             fontWeight: FontWeight.w800,
             height: 1,
           ),

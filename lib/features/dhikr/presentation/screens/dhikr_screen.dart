@@ -1,5 +1,6 @@
 import 'package:dhikr_counter/features/dhikr/data/models/dhikr_model.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/providers/dhikr_provider.dart';
+import 'package:dhikr_counter/features/dhikr/presentation/widgets/circle_button.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/widgets/counter_display.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/widgets/goal_picker.dart';
 import 'package:dhikr_counter/features/dhikr/presentation/widgets/increment_button.dart';
@@ -26,7 +27,7 @@ class DhikrScreen extends ConsumerWidget {
 
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
                   minHeight: constraints.maxHeight - 32,
@@ -36,7 +37,7 @@ class DhikrScreen extends ConsumerWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        _BackBubble(compact: compact),
+                        CircleButton(compact: compact,),
                         const SizedBox(width: 14),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,10 +47,10 @@ class DhikrScreen extends ConsumerWidget {
                               style: Theme.of(context).textTheme.titleLarge
                                   ?.copyWith(
                                     color: Colors.white,
-                                    fontSize: compact ? 26 : 30,
+                                    fontSize: compact ? 24 : 26,
                                   ),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 2),
                             const Text(
                               'JOINED',
                               style: TextStyle(
@@ -63,12 +64,12 @@ class DhikrScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 24),
                     CounterDisplay(
                       dailyGlobalCount: state.dailyGlobalCount,
                       compact: compact,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 34),
                     IncrementButton(
                       orbSize: orbSize,
                       phrase: phrase,
@@ -81,12 +82,12 @@ class DhikrScreen extends ConsumerWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF8E9098),
-                        letterSpacing: 3,
+                        letterSpacing: 2,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 28),
                     Center(
                       child: FilledButton.tonal(
                         onPressed: viewModel.switchDhikr,
@@ -106,7 +107,7 @@ class DhikrScreen extends ConsumerWidget {
                           style: TextStyle(
                             letterSpacing: 1.5,
                             fontWeight: FontWeight.w700,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                       ),
@@ -196,26 +197,3 @@ class DhikrScreen extends ConsumerWidget {
   }
 }
 
-class _BackBubble extends StatelessWidget {
-  const _BackBubble({required this.compact});
-
-  final bool compact;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: compact ? 54 : 60,
-      height: compact ? 54 : 60,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: const Color(0xFF2D2E34)),
-        color: const Color(0xFF0D1015),
-      ),
-      child: const Icon(
-        Icons.chevron_left_rounded,
-        color: Colors.white,
-        size: 34,
-      ),
-    );
-  }
-}
